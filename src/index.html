@@ -1,17 +1,1043 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Hola mundo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portal Institucional</title>
+
+    <meta name="description"
+          content="Portal institucional de servicios, información y atención.">
+
+    <style>
+        :root {
+            --primary: #611232;
+            --primary-dark: #430c23;
+            --secondary: #9d7b46;
+            --background: #f5f6f8;
+            --white: #ffffff;
+            --text: #252525;
+            --text-light: #666666;
+            --border: #e1e4e8;
+            --success: #198754;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ==============================
+           HEADER
+        ============================== */
+
+        header {
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 76px;
+            padding: 0 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo-text strong {
+            display: block;
+            font-size: 17px;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-button {
+            background: var(--primary);
+            color: white !important;
+
+            padding: 11px 18px;
+            border-radius: 7px;
+        }
+
+        .nav-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ==============================
+           HERO
+        ============================== */
+
+        .hero {
+            min-height: 570px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(64, 8, 31, 0.97) 0%,
+                    rgba(97, 18, 50, 0.92) 50%,
+                    rgba(97, 18, 50, 0.75) 100%
+                );
+
+            color: white;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 24px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 7px 13px;
+            margin-bottom: 22px;
+
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 50px;
+
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            background: rgba(255,255,255,0.08);
+        }
+
+        .hero h1 {
+            max-width: 760px;
+
+            font-size: clamp(38px, 6vw, 65px);
+            line-height: 1.05;
+            margin-bottom: 22px;
+
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            max-width: 650px;
+
+            font-size: 18px;
+            color: rgba(255,255,255,0.82);
+
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 14px 24px;
+
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.6);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* ==============================
+           ESTADÍSTICAS
+        ============================== */
+
+        .stats-wrapper {
+            max-width: 1200px;
+            margin: -55px auto 0;
+            padding: 0 24px;
+
+            position: relative;
+            z-index: 5;
+        }
+
+        .stats {
+            background: white;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 15px 50px rgba(0,0,0,0.10);
+
+            overflow: hidden;
+        }
+
+        .stat {
+            padding: 32px 20px;
+            text-align: center;
+
+            border-right: 1px solid var(--border);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat h3 {
+            color: var(--primary);
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        /* ==============================
+           SECCIONES
+        ============================== */
+
+        .section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 95px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 55px;
+        }
+
+        .section-header span {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            margin: 8px 0 15px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+        }
+
+        /* ==============================
+           SERVICIOS
+        ============================== */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            padding: 32px;
+
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 18px 35px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: rgba(97, 18, 50, 0.08);
+            color: var(--primary);
+
+            font-size: 23px;
+
+            margin-bottom: 23px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 19px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* ==============================
+           ABOUT
+        ============================== */
+
+        .about-background {
+            background: white;
+        }
+
+        .about {
+            max-width: 1200px;
+            margin: auto;
+            padding: 90px 24px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .about-image {
+            min-height: 420px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    140deg,
+                    var(--primary),
+                    var(--primary-dark)
+                );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+            text-align: center;
+
+            padding: 40px;
+        }
+
+        .about-image div {
+            font-size: 75px;
+        }
+
+        .about-content span {
+            color: var(--primary);
+
+            text-transform: uppercase;
+            font-size: 13px;
+
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .about-content h2 {
+            font-size: 38px;
+            line-height: 1.15;
+            margin: 10px 0 22px;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 17px;
+        }
+
+        .check-list {
+            margin-top: 25px;
+        }
+
+        .check-item {
+            display: flex;
+            gap: 12px;
+
+            margin-bottom: 13px;
+
+            font-size: 14px;
+        }
+
+        .check {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* ==============================
+           CTA
+        ============================== */
+
+        .cta {
+            background: var(--primary);
+            color: white;
+
+            text-align: center;
+
+            padding: 80px 24px;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 30px;
+        }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            background: #1d1d1d;
+            color: white;
+
+            padding: 60px 24px 25px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+
+            padding-bottom: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 17px;
+        }
+
+        footer p,
+        footer a {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        footer a {
+            display: block;
+
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: auto;
+
+            border-top: 1px solid #333;
+
+            padding-top: 22px;
+
+            text-align: center;
+
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media (max-width: 850px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+
+            .hero {
+                min-height: 510px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .section-header h2,
+            .about-content h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <main>
-    <h1>Hola mundo</h1>
-  </main>
-</body>
 
+<!-- HEADER -->
+<header>
+
+    <div class="navbar">
+
+        <a href="#" class="logo">
+
+            <div class="logo-icon">
+                MX
+            </div>
+
+            <div class="logo-text">
+                <strong>Portal Institucional</strong>
+                <span>Servicios e Información</span>
+            </div>
+
+        </a>
+
+        <nav>
+            <ul>
+
+                <li>
+                    <a href="#inicio">Inicio</a>
+                </li>
+
+                <li>
+                    <a href="#servicios">Servicios</a>
+                </li>
+
+                <li>
+                    <a href="#nosotros">Nosotros</a>
+                </li>
+
+                <li>
+                    <a href="#contacto">Contacto</a>
+                </li>
+
+                <li>
+                    <a href="#contacto" class="nav-button">
+                        Acceso
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+
+    <div class="hero-container">
+
+        <div class="badge">
+            Portal de servicios digitales
+        </div>
+
+        <h1>
+            Tecnología e información al servicio de nuestra institución
+        </h1>
+
+        <p>
+            Accede de manera sencilla y segura a los servicios,
+            plataformas e información disponibles para nuestros usuarios.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#servicios" class="btn btn-primary">
+                Consultar servicios
+            </a>
+
+            <a href="#nosotros" class="btn btn-outline">
+                Conocer más
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ESTADÍSTICAS -->
+<div class="stats-wrapper">
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3>24/7</h3>
+            <p>Disponibilidad</p>
+        </div>
+
+        <div class="stat">
+            <h3>100%</h3>
+            <p>Servicios digitales</p>
+        </div>
+
+        <div class="stat">
+            <h3>+50</h3>
+            <p>Servicios disponibles</p>
+        </div>
+
+        <div class="stat">
+            <h3>SSL</h3>
+            <p>Conexión segura</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+
+    <div class="section-header">
+
+        <span>
+            Servicios
+        </span>
+
+        <h2>
+            Servicios disponibles
+        </h2>
+
+        <p>
+            Consulta las principales plataformas y recursos digitales
+            disponibles para usuarios internos y externos.
+        </p>
+
+    </div>
+
+    <div class="services">
+
+        <div class="card">
+
+            <div class="card-icon">
+                ◈
+            </div>
+
+            <h3>
+                Servicios digitales
+            </h3>
+
+            <p>
+                Acceso centralizado a sistemas y plataformas
+                institucionales.
+            </p>
+
+            <a href="#">
+                Consultar →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ⛨
+            </div>
+
+            <h3>
+                Seguridad
+            </h3>
+
+            <p>
+                Información y recomendaciones para proteger
+                cuentas, dispositivos y servicios.
+            </p>
+
+            <a href="#">
+                Consultar →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ◉
+            </div>
+
+            <h3>
+                Mesa de ayuda
+            </h3>
+
+            <p>
+                Solicita soporte técnico y consulta el estado
+                de tus solicitudes.
+            </p>
+
+            <a href="#">
+                Solicitar soporte →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ▣
+            </div>
+
+            <h3>
+                Documentación
+            </h3>
+
+            <p>
+                Consulta manuales, políticas, procedimientos
+                y documentación técnica.
+            </p>
+
+            <a href="#">
+                Ver documentos →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ◎
+            </div>
+
+            <h3>
+                Sistemas
+            </h3>
+
+            <p>
+                Acceso a sistemas institucionales autorizados
+                para el desarrollo de actividades.
+            </p>
+
+            <a href="#">
+                Acceder →
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                ✉
+            </div>
+
+            <h3>
+                Contacto
+            </h3>
+
+            <p>
+                Comunícate con nuestro equipo para recibir
+                información o asistencia.
+            </p>
+
+            <a href="#contacto">
+                Contactar →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NOSOTROS -->
+<section class="about-background" id="nosotros">
+
+    <div class="about">
+
+        <div class="about-image">
+
+            <div>
+                ◈
+            </div>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <span>
+                Nuestra institución
+            </span>
+
+            <h2>
+                Servicios modernos, seguros y accesibles
+            </h2>
+
+            <p>
+                Trabajamos para proporcionar herramientas tecnológicas
+                confiables que permitan mejorar la operación y facilitar
+                el acceso a los servicios institucionales.
+            </p>
+
+            <p>
+                Nuestra infraestructura utiliza medidas de seguridad,
+                disponibilidad y protección de información.
+            </p>
+
+            <div class="check-list">
+
+                <div class="check-item">
+                    <span class="check">✓</span>
+                    Plataformas protegidas mediante HTTPS.
+                </div>
+
+                <div class="check-item">
+                    <span class="check">✓</span>
+                    Monitoreo continuo de servicios.
+                </div>
+
+                <div class="check-item">
+                    <span class="check">✓</span>
+                    Protección de información institucional.
+                </div>
+
+                <div class="check-item">
+                    <span class="check">✓</span>
+                    Atención y soporte especializado.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACTO -->
+<section class="cta" id="contacto">
+
+    <h2>
+        ¿Necesitas asistencia?
+    </h2>
+
+    <p>
+        Nuestro equipo está disponible para atender tus solicitudes.
+    </p>
+
+    <a href="mailto:soporte@ejemplo.gob.mx"
+       class="btn btn-primary">
+
+        Contactar a soporte
+
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-container">
+
+        <div>
+
+            <h3>
+                Portal Institucional
+            </h3>
+
+            <p>
+                Plataforma de acceso a servicios, información
+                y recursos tecnológicos institucionales.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Enlaces
+            </h3>
+
+            <a href="#inicio">
+                Inicio
+            </a>
+
+            <a href="#servicios">
+                Servicios
+            </a>
+
+            <a href="#nosotros">
+                Nosotros
+            </a>
+
+            <a href="#contacto">
+                Contacto
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Información
+            </h3>
+
+            <a href="#">
+                Aviso de privacidad
+            </a>
+
+            <a href="#">
+                Términos de uso
+            </a>
+
+            <a href="#">
+                Accesibilidad
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Portal Institucional.
+        Todos los derechos reservados.
+
+    </div>
+
+</footer>
+
+</body>
 </html>
